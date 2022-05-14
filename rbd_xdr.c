@@ -6,13 +6,17 @@
 #include "rbd.h"
 
 bool_t
-xdr_example (XDR *xdrs, example *objp)
+xdr_ContactEntry (XDR *xdrs, ContactEntry *objp)
 {
 	register int32_t *buf;
 
-	 if (!xdr_int (xdrs, &objp->exfield1))
+	 if (!xdr_string (xdrs, &objp->name, 32))
 		 return FALSE;
-	 if (!xdr_char (xdrs, &objp->exfield2))
+	 if (!xdr_string (xdrs, &objp->phone, 32))
+		 return FALSE;
+	 if (!xdr_string (xdrs, &objp->address, 64))
+		 return FALSE;
+	 if (!xdr_string (xdrs, &objp->email, 32))
 		 return FALSE;
 	return TRUE;
 }

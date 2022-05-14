@@ -20,9 +20,9 @@ static void
 rbdprog_1(struct svc_req *rqstp, register SVCXPRT *transp)
 {
 	union {
-		char *insere_1_arg;
+		ContactEntry insert_1_arg;
 		char *remove_1_arg;
-		char *busca_1_arg;
+		char *search_1_arg;
 	} argument;
 	char *result;
 	xdrproc_t _xdr_argument, _xdr_result;
@@ -33,16 +33,10 @@ rbdprog_1(struct svc_req *rqstp, register SVCXPRT *transp)
 		(void) svc_sendreply (transp, (xdrproc_t) xdr_void, (char *)NULL);
 		return;
 
-	case INICIALIZAR:
-		_xdr_argument = (xdrproc_t) xdr_void;
+	case INSERT:
+		_xdr_argument = (xdrproc_t) xdr_ContactEntry;
 		_xdr_result = (xdrproc_t) xdr_int;
-		local = (char *(*)(char *, struct svc_req *)) inicializar_1_svc;
-		break;
-
-	case INSERE:
-		_xdr_argument = (xdrproc_t) xdr_wrapstring;
-		_xdr_result = (xdrproc_t) xdr_int;
-		local = (char *(*)(char *, struct svc_req *)) insere_1_svc;
+		local = (char *(*)(char *, struct svc_req *)) insert_1_svc;
 		break;
 
 	case REMOVE:
@@ -51,10 +45,10 @@ rbdprog_1(struct svc_req *rqstp, register SVCXPRT *transp)
 		local = (char *(*)(char *, struct svc_req *)) remove_1_svc;
 		break;
 
-	case BUSCA:
+	case SEARCH:
 		_xdr_argument = (xdrproc_t) xdr_wrapstring;
-		_xdr_result = (xdrproc_t) xdr_int;
-		local = (char *(*)(char *, struct svc_req *)) busca_1_svc;
+		_xdr_result = (xdrproc_t) xdr_ContactEntry;
+		local = (char *(*)(char *, struct svc_req *)) search_1_svc;
 		break;
 
 	default:

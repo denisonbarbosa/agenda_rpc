@@ -10,28 +10,13 @@
 static struct timeval TIMEOUT = { 25, 0 };
 
 int *
-inicializar_1(void *argp, CLIENT *clnt)
+insert_1(ContactEntry *argp, CLIENT *clnt)
 {
 	static int clnt_res;
 
 	memset((char *)&clnt_res, 0, sizeof(clnt_res));
-	if (clnt_call (clnt, INICIALIZAR,
-		(xdrproc_t) xdr_void, (caddr_t) argp,
-		(xdrproc_t) xdr_int, (caddr_t) &clnt_res,
-		TIMEOUT) != RPC_SUCCESS) {
-		return (NULL);
-	}
-	return (&clnt_res);
-}
-
-int *
-insere_1(char **argp, CLIENT *clnt)
-{
-	static int clnt_res;
-
-	memset((char *)&clnt_res, 0, sizeof(clnt_res));
-	if (clnt_call (clnt, INSERE,
-		(xdrproc_t) xdr_wrapstring, (caddr_t) argp,
+	if (clnt_call (clnt, INSERT,
+		(xdrproc_t) xdr_ContactEntry, (caddr_t) argp,
 		(xdrproc_t) xdr_int, (caddr_t) &clnt_res,
 		TIMEOUT) != RPC_SUCCESS) {
 		return (NULL);
@@ -54,15 +39,15 @@ remove_1(char **argp, CLIENT *clnt)
 	return (&clnt_res);
 }
 
-int *
-busca_1(char **argp, CLIENT *clnt)
+ContactEntry *
+search_1(char **argp, CLIENT *clnt)
 {
-	static int clnt_res;
+	static ContactEntry clnt_res;
 
 	memset((char *)&clnt_res, 0, sizeof(clnt_res));
-	if (clnt_call (clnt, BUSCA,
+	if (clnt_call (clnt, SEARCH,
 		(xdrproc_t) xdr_wrapstring, (caddr_t) argp,
-		(xdrproc_t) xdr_int, (caddr_t) &clnt_res,
+		(xdrproc_t) xdr_ContactEntry, (caddr_t) &clnt_res,
 		TIMEOUT) != RPC_SUCCESS) {
 		return (NULL);
 	}
