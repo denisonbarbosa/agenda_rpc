@@ -9,6 +9,7 @@ ContactEntry *new_contact() {
     ptr->phone = malloc(32 * sizeof(char));
     ptr->address = malloc(64 * sizeof(char));
     ptr->email = malloc(32 * sizeof(char));
+    return ptr;
 }
 
 void free_contact(ContactEntry **ptr) {

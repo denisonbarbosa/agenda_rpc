@@ -1,3 +1,5 @@
+/// The contact list.
+
 #ifndef CONTACTS_H
 #define CONTACTS_H
 

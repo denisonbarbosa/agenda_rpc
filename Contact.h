@@ -1,5 +1,7 @@
-#ifndef AGENDA_RPC_CONTACT_H
-#define AGENDA_RPC_CONTACT_H
+/// Responsible for allocating/deallocating contacts.
+
+#ifndef CONTACT_H
+#define CONTACT_H
 
 #include "rbd.h"
 

@@ -10,65 +10,56 @@
 static int num_entries = 0;
 static ContactEntry *entries[MAX_ENTRIES];
 
-/// Searches a ContactEntry by name and returns its index. If none is found, returns -1.
-static int FindIndexByName(const char *name)
-{
-    for (int i = 0; i < num_entries; ++i)
-    {
-        if (strcmp(name, entries[i]->name) == 0)
-        {
-            return i;
-        }
+/// Searches a ContactEntry by name and returns its index. If none is found,
+/// returns -1.
+static int FindIndexByName(const char *name) {
+  for (int i = 0; i < num_entries; ++i) {
+    if (strcmp(name, entries[i]->name) == 0) {
+      return i;
     }
+  }
 
-    return -1;
+  return -1;
 }
 
-int Insert(const ContactEntry *contact)
-{
-    printf("Creating contact %s\n", contact->name);
+int Insert(const ContactEntry *contact) {
+  printf("Creating contact %s\n", contact->name);
 
-    entries[num_entries] = copy_contact(contact);
-    num_entries++;
+  entries[num_entries] = copy_contact(contact);
+  num_entries++;
 
-    printf("CONTATOS ATÉ AGORA:\n");
-    for (int i = 0; i < num_entries; ++i)
-    {
-        printf("%s %s %s %s\n", entries[i]->name, entries[i]->phone, entries[i]->address, entries[i]->email);
-    }
-
-    return 1;
+  return 1;
 }
 
-SearchResult Search(char *name)
-{
-    printf("Searching %s\n", name);
-    int index = FindIndexByName(name);
-    SearchResult res = {.entry = NULL, .found = FALSE};
+SearchResult Search(char *name) {
+  printf("Searching %s... ", name);
+  int index = FindIndexByName(name);
+  SearchResult res = {.entry = NULL, .found = FALSE};
 
-    if (index != -1)
-    {
-        res.entry = entries[index];
-        res.found = TRUE;
-    }
-    return res;
+  if (index != -1) {
+    printf("Found!\n");
+    res.entry = entries[index];
+    res.found = TRUE;
+  } else {
+    printf("Not found\n");
+  }
+
+  return res;
 }
 
-int Remove(const char *name)
-{
-    int index = FindIndexByName(name);
+int Remove(const char *name) {
+  int index = FindIndexByName(name);
 
-    if (index == -1)
-    {
-        return 0;
-    }
+  if (index == -1) {
+    return 0;
+  }
 
-    free_contact(&entries[index]);
-    if (num_entries > 1)
-    {
-        entries[index] = entries[num_entries - 1];
-    }
+  free_contact(&entries[index]);
+  if (num_entries > 1) {
+    entries[index] = entries[num_entries - 1];
+    entries[num_entries - 1] = NULL;
+  }
 
-    num_entries--;
-    return 1;
+  num_entries--;
+  return 1;
 }
