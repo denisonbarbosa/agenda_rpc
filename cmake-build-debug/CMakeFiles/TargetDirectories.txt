@@ -1,4 +1,0 @@
-/home/denisonbarbosa/ufms/dist_sist/agenda_rpc/cmake-build-debug/CMakeFiles/client.dir
-/home/denisonbarbosa/ufms/dist_sist/agenda_rpc/cmake-build-debug/CMakeFiles/server.dir
-/home/denisonbarbosa/ufms/dist_sist/agenda_rpc/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/denisonbarbosa/ufms/dist_sist/agenda_rpc/cmake-build-debug/CMakeFiles/rebuild_cache.dir
