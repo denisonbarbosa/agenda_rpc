@@ -1,5 +1,7 @@
 #include "Contact.h"
+
 #include <string.h>
+#include <stdlib.h>
 
 ContactEntry *new_contact() {
     ContactEntry *ptr = malloc(sizeof(ContactEntry));

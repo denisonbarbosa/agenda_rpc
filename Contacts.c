@@ -1,8 +1,11 @@
 #include "Contacts.h"
 
-#define MAX_ENTRIES 128
-
 #include "Contact.h"
+
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_ENTRIES 128
 
 static int num_entries = 0;
 static ContactEntry *entries[MAX_ENTRIES];
