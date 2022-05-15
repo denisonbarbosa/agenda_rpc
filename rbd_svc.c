@@ -47,7 +47,7 @@ rbdprog_1(struct svc_req *rqstp, register SVCXPRT *transp)
 
 	case SEARCH:
 		_xdr_argument = (xdrproc_t) xdr_wrapstring;
-		_xdr_result = (xdrproc_t) xdr_ContactEntry;
+		_xdr_result = (xdrproc_t) xdr_SearchResult;
 		local = (char *(*)(char *, struct svc_req *)) search_1_svc;
 		break;
 

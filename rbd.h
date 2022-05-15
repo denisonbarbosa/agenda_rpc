@@ -22,6 +22,12 @@ struct ContactEntry {
 };
 typedef struct ContactEntry ContactEntry;
 
+struct SearchResult {
+	bool_t found;
+	ContactEntry *entry;
+};
+typedef struct SearchResult SearchResult;
+
 #define RBDPROG 0x30090949
 #define RDBVERS 1
 
@@ -33,8 +39,8 @@ extern  int * insert_1_svc(ContactEntry *, struct svc_req *);
 extern  int * remove_1(char **, CLIENT *);
 extern  int * remove_1_svc(char **, struct svc_req *);
 #define SEARCH 3
-extern  ContactEntry * search_1(char **, CLIENT *);
-extern  ContactEntry * search_1_svc(char **, struct svc_req *);
+extern  SearchResult * search_1(char **, CLIENT *);
+extern  SearchResult * search_1_svc(char **, struct svc_req *);
 extern int rbdprog_1_freeresult (SVCXPRT *, xdrproc_t, caddr_t);
 
 #else /* K&R C */
@@ -45,8 +51,8 @@ extern  int * insert_1_svc();
 extern  int * remove_1();
 extern  int * remove_1_svc();
 #define SEARCH 3
-extern  ContactEntry * search_1();
-extern  ContactEntry * search_1_svc();
+extern  SearchResult * search_1();
+extern  SearchResult * search_1_svc();
 extern int rbdprog_1_freeresult ();
 #endif /* K&R C */
 
@@ -54,9 +60,11 @@ extern int rbdprog_1_freeresult ();
 
 #if defined(__STDC__) || defined(__cplusplus)
 extern  bool_t xdr_ContactEntry (XDR *, ContactEntry*);
+extern  bool_t xdr_SearchResult (XDR *, SearchResult*);
 
 #else /* K&R C */
 extern bool_t xdr_ContactEntry ();
+extern bool_t xdr_SearchResult ();
 
 #endif /* K&R C */
 

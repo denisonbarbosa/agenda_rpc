@@ -20,3 +20,15 @@ xdr_ContactEntry (XDR *xdrs, ContactEntry *objp)
 		 return FALSE;
 	return TRUE;
 }
+
+bool_t
+xdr_SearchResult (XDR *xdrs, SearchResult *objp)
+{
+	register int32_t *buf;
+
+	 if (!xdr_bool (xdrs, &objp->found))
+		 return FALSE;
+	 if (!xdr_pointer (xdrs, (char **)&objp->entry, sizeof (ContactEntry), (xdrproc_t) xdr_ContactEntry))
+		 return FALSE;
+	return TRUE;
+}
